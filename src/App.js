@@ -1,25 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+  const [character, setCharacter] = useState({
+    name: "Taha",
+    number: 7
+  });
+  
+  const onChangeName = () => {
+    setCharacter((prevState) => ({...prevState, name: "Yasin"}));
+  }
+  const onIncrement = () => {
+    setCharacter((prevState) => ({...prevState, number: prevState.number + 1}));
+  }
+  const onDecrement = () => {
+    setCharacter((prevState) => ({...prevState, number: prevState.number - 1}));
+  }
+
+  const {name, number} = character;
+
+  return(
+    <>
+      <h1>My name is {name} and my favorite number is {number}</h1>
+      <button onClick={onIncrement}>+</button>
+      <button onClick={onDecrement}>-</button>
+      <button onClick={onChangeName}>Change name</button>
+    </>
+  )
 }
 
 export default App;
